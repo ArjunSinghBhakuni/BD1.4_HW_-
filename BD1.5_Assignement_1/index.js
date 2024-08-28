@@ -12,7 +12,7 @@ app.get("/",(req,res)=>{
 app.get("/cart-total",(req , res )=>{
   console.log("testing")
   let newItemPrice= parseFloat(req.query.newItemPrice);
-  let cartTotal = paraseFloat(req.query.cartTotal);
+  let cartTotal = parseFloat(req.query.cartTotal);
   if(cartTotal==0){
    res.send(newItemPrice.toString()); 
   }
@@ -40,7 +40,7 @@ res.send(calculateDiscunt(cartTotal,isMember).toString());
 function calculateTax(carTotal){
   return (cartTotal*0.05);
 }
-app.get("calculate-tax",(req ,res )=>{
+app.get("/calculate-tax",(req ,res )=>{
   let cartTotal = parseFloat(req.query.cartTotal);
 
   let tax = calculateTax(cartTotal);
@@ -55,7 +55,7 @@ if(method =="standard"){
 }
   
 }
-app.get("estimate-delivery",(req ,res )=>{
+app.get("/estimate-delivery",(req ,res )=>{
   let shippingMethod = req.query.shippingMethod;
   let distance = parseFloat(req.query.distance);
  res.send(calculateDeleiveryTime(shippingMethod,distance).toString());
@@ -65,14 +65,14 @@ app.get("estimate-delivery",(req ,res )=>{
 calculateShippingCost =(weight,distance)=>{
  return weight * distance * 0.1 ;
 }
-app.get("shipping-cost",(req ,res )=>{
+app.get("/shipping-cost",(req ,res )=>{
   let weight = parseFloat(req.query.weight);
   let distance = parseFloat(req.query.distance);
 
   res.send(calculateShippingCost(weight,distance).toString())
 })
 
-app.get("loyalty-points",(req,res )=>{
+app.get("/loyalty-points",(req,res )=>{
   let purchaseAmount = parseFloat(req.query.purchaseAmount);
 
   res.send((purchaseAmount*2).toString());

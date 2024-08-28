@@ -5,6 +5,10 @@ let app = express();
 
 app.use(cors());
 
+app.get("/",(req,res)=>{
+  res.send("welcome to store");
+})
+
 app.get("/cart-total",(req , res )=>{
   console.log("testing")
   let newItemPrice= parseFloat(req.query.newItemPrice);
@@ -26,7 +30,7 @@ calculateDiscunt = (cartTotal,isMember)=>{
   }
 }
 
-app.get("membership-discount",(req , res )=>{
+app.get("/membership-discount",(req , res )=>{
 
   let cartTotal = parseFloat(req.query.cartTotal);
   let isMember = req.query.isMember == "true"?true:false;
